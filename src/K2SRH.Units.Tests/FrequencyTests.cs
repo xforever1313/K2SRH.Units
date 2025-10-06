@@ -87,6 +87,44 @@ namespace K2SRH.Units.Tests
         }
 
         [TestMethod]
+        public void LessThanGreaterThanTest()
+        {
+            // Setup
+            Frequency f1 = new KiloHertz( 5 );
+            Frequency f2 = new KiloHertz( 4 );
+
+            // Check
+            Assert.IsTrue( f1 > f2 );
+            Assert.IsTrue( f1 >= f2 );
+            Assert.IsFalse( f1 < f2 );
+            Assert.IsFalse( f1 <= f2 );
+        }
+
+        [TestMethod]
+        public void EqualsTest()
+        {
+            // Setup
+            Frequency f1 = new KiloHertz( 5 );
+            Frequency f2 = new Hertz( 5000 );
+            Frequency f3 = new KiloHertz( 4 );
+
+            // Check
+            Assert.IsTrue( f1.Equals( f2 ) );
+            Assert.IsTrue( f2.Equals( f1 ) );
+            Assert.IsTrue( f1 == f2 );
+            Assert.IsFalse( f1 != f2 );
+            Assert.IsTrue( f1 <= f2 );
+            Assert.IsTrue( f1 >= f2 );
+
+            Assert.IsFalse( f1.Equals( f3 ) );
+            Assert.IsFalse( f3.Equals( f1 ) );
+            Assert.IsFalse( f1 == f3 );
+            Assert.IsTrue( f1 != f3 );
+            Assert.IsFalse( f1 <= f3 );
+            Assert.IsTrue( f1 >= f3 );
+        }
+
+        [TestMethod]
         public void AbsTest()
         {
             // Setup
