@@ -1,6 +1,8 @@
 # K2SRH.Units
 
-TODO Description
+This is my Hacktoberfest project for 2025.
+
+The intent is to have a series of "unit" classes written in C# that people can use instead of having to convert between units. It all just happens magically.
 
 ## Features
 
