@@ -109,6 +109,7 @@ namespace K2SRH.Units.Tests
             Frequency f3 = new KiloHertz( 4 );
 
             // Check
+            Assert.IsFalse( f1.Equals( "Hello" ) );
             Assert.IsTrue( f1.Equals( f2 ) );
             Assert.IsTrue( f2.Equals( f1 ) );
             Assert.IsTrue( f1 == f2 );
