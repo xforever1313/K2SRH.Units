@@ -12,7 +12,7 @@ namespace K2SRH.Units
     {
         // ---------------- Constructor ----------------
 
-        public Frequency(decimal hertz)
+        public Frequency( decimal hertz )
         {
             this.value = hertz;
         }
@@ -20,5 +20,27 @@ namespace K2SRH.Units
         // ---------------- Properties ----------------
 
         public decimal Hertz => this.value;
+
+        // ---------------- Methods ----------------
+
+        public override string ToString()
+        {
+            if( this < new KiloHertz( 1 ) )
+            {
+                return this.ToHertz().ToString();
+            }
+            else if( this < new MegaHertz( 1 ) )
+            {
+                return this.ToKiloHertz().ToString();
+            }
+            else if( this < new GigaHertz( 1 ) )
+            {
+                return this.ToMegaHertz().ToString();
+            }
+            else
+            {
+                return this.ToGigaHertz().ToString();
+            }
+        }
     }
 }
