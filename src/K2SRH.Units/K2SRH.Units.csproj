@@ -3,7 +3,25 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+    <PackageOutputPath>../../dist</PackageOutputPath>
     <CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)generated</CompilerGeneratedFilesOutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>K2SRH.Units</PackageId>
+    <Title>K2SRH's Units Library</Title>
+    <Version>1.0.0</Version>
+    <Authors>Seth Hendrick</Authors>
+    <Copyright>Copyright (C) Seth Hendrick</Copyright>
+    <Description>Library that contains structs that represents units that can be easily converted to other units.</Description>
+    <PackageLicenseExpression>BSL-1.0</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/xforever1313/K2SRH.Units</PackageProjectUrl>
+    <PackageTags>conversion;math;si;struct;units;seth;hendrick;k2srh;xforever1313</PackageTags>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/xforever1313/K2SRH.Units</RepositoryUrl>
+    <!--<PackageIcon>icon.png</PackageIcon>-->
+    <PackageReleaseNotes>View release notes here: [https://github.com/xforever1313/K2SRH.Units/releases](https://github.com/xforever1313/K2SRH.Units/releases)</PackageReleaseNotes>
+    <PackageReadmeFile>Readme.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,4 +30,14 @@
                       ReferenceOutputAssembly="false" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="..\..\Readme.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\..\LICENSE_1_0.txt">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 </Project>

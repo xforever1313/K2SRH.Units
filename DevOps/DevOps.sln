@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "K2SRH.Units.DevOps", "DevOps\K2SRH.Units.DevOps.csproj", "{BFF4FF70-B5FD-4CDC-B304-7A1C0A711040}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seth.CakeLib", "..\sethcs\Seth.CakeLib\Seth.CakeLib.csproj", "{B862CFED-34FC-4FC1-B9A3-EC7A3544EB2B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibSethCS", "..\sethcs\LibSethCS\LibSethCS.csproj", "{1F030173-6779-446A-97AA-7D1442E54317}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BFF4FF70-B5FD-4CDC-B304-7A1C0A711040}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFF4FF70-B5FD-4CDC-B304-7A1C0A711040}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFF4FF70-B5FD-4CDC-B304-7A1C0A711040}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFF4FF70-B5FD-4CDC-B304-7A1C0A711040}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B862CFED-34FC-4FC1-B9A3-EC7A3544EB2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B862CFED-34FC-4FC1-B9A3-EC7A3544EB2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B862CFED-34FC-4FC1-B9A3-EC7A3544EB2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B862CFED-34FC-4FC1-B9A3-EC7A3544EB2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F030173-6779-446A-97AA-7D1442E54317}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F030173-6779-446A-97AA-7D1442E54317}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F030173-6779-446A-97AA-7D1442E54317}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F030173-6779-446A-97AA-7D1442E54317}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
