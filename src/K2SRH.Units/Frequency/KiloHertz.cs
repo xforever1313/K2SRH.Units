@@ -18,16 +18,11 @@
         }
     }
 
-    public static class KiloHertzExtensions
+    public static partial class KiloHertzExtensions
     {
         public static decimal KiloHertz( this Frequency frequency )
         {
             return frequency.Hertz / 1000m;
-        }
-
-        public static KiloHertz ToKiloHertz( this Frequency frequency )
-        {
-            return new KiloHertz( frequency.KiloHertz() );
         }
     }
 }

@@ -18,16 +18,11 @@
         }
     }
 
-    public static class MegaHertzExtensions
+    public static partial class MegaHertzExtensions
     {
         public static decimal MegaHertz( this Frequency frequency )
         {
             return frequency.Hertz / ( 1000m * 1000m );
-        }
-
-        public static MegaHertz ToMegaHertz( this Frequency frequency )
-        {
-            return new MegaHertz( frequency.MegaHertz() );
         }
     }
 }

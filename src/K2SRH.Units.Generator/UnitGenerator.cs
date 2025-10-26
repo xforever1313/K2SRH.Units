@@ -148,6 +148,11 @@ namespace K2SRH.Units.Generator
 
             sourceBuilder.AppendLine( $"    }}" );
 
+            foreach( ITypeSymbol typeSymbol in units )
+            {
+                sourceBuilder.AppendLine( GenerateExtensionMethods( unitType, typeSymbol ) );
+            }
+
             sourceBuilder.AppendLine( "}" );
 
             return sourceBuilder.ToString();
@@ -158,6 +163,19 @@ namespace K2SRH.Units.Generator
             return $@"
         // -------- {measurementType.Name} --------
     
+";
+        }
+
+        private static string GenerateExtensionMethods( INamedTypeSymbol unitType, ITypeSymbol measurementType )
+        {
+            return $@"
+    public static partial class {unitType.Name}Extensions
+    {{
+        public static {unitType.Name} To{unitType.Name}( this {measurementType.Name} {measurementType.Name.ToLower()} )
+        {{
+            return new {unitType.Name}( {measurementType.Name.ToLower()}.{unitType.Name}() );
+        }}
+    }}
 ";
         }
 

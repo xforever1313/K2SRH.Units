@@ -25,11 +25,15 @@ namespace K2SRH.Units
         }
     }
 
-    public static class HertzExtensions
+    public static partial class HertzExtensions
     {
-        public static Hertz ToHertz( this Frequency frequency )
+        /// <remarks>
+        /// Internal to have the property be used instead.
+        /// Only here so it works with the generator.
+        /// </remarks>
+        internal static decimal Hertz( this Frequency frequency )
         {
-            return new Hertz( frequency.Hertz );
+            return frequency.Hertz;
         }
     }
 }
