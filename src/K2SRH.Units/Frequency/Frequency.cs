@@ -7,7 +7,7 @@
 
 namespace K2SRH.Units
 {
-    [BaseUnit]
+    [Measurement]
     public partial struct Frequency
     {
         // ---------------- Constructor ----------------

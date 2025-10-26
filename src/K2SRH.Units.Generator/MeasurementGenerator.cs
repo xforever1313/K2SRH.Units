@@ -16,7 +16,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 namespace K2SRH.Units.Generator
 {
     [Generator]
-    public sealed class OperatorGenerator : IIncrementalGenerator
+    public sealed class MeasurementGenerator : IIncrementalGenerator
     {
         // ---------------- Methods ----------------
 
@@ -64,13 +64,13 @@ namespace K2SRH.Units.Generator
                 return null;
             }
 
-            // Look for [Units] or [UnitsAttribute]
+            // Look for [Measurement] or [MeasurementAttribute]
             var hasUnits = symbol.GetAttributes().Any(
                 a =>
                 {
                     var name = a.AttributeClass?.Name;
-                    return string.Equals( name, "BaseUnitAttribute", StringComparison.Ordinal )
-                        || string.Equals( name, "BaseUnit", StringComparison.Ordinal );
+                    return string.Equals( name, "MeasurementAttribute", StringComparison.Ordinal )
+                        || string.Equals( name, "Measurement", StringComparison.Ordinal );
                 }
             );
 
