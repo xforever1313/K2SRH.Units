@@ -1,23 +1,14 @@
 ﻿namespace K2SRH.Units
 {
     [Unit( typeof( Frequency ) )]
-    public struct KiloHertz
+    public partial struct KiloHertz
     {
         // ---------------- Constructor ----------------
-
-        public KiloHertz( decimal kiloHertz )
-        {
-            this.Value = kiloHertz;
-        }
 
         public static implicit operator Frequency( KiloHertz kiloHertz )
         {
             return new Frequency( kiloHertz.Value * 1000.0m );
         }
-
-        // ---------------- Properties ----------------
-
-        public decimal Value { get; }
 
         // ---------------- Methods ----------------
 

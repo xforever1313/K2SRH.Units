@@ -8,23 +8,14 @@
 namespace K2SRH.Units
 {
     [Unit( typeof( Frequency ) )]
-    public struct Hertz
+    public partial struct Hertz
     {
         // ---------------- Constructor ----------------
-
-        public Hertz( decimal hertz )
-        {
-            this.Value = hertz;
-        }
 
         public static implicit operator Frequency( Hertz hertz )
         {
             return new Frequency( hertz.Value );
         }
-
-        // ---------------- Properties ----------------
-
-        public decimal Value { get; }
 
         // ---------------- Methods ----------------
 
