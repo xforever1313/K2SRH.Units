@@ -1,5 +1,6 @@
 ﻿namespace K2SRH.Units
 {
+    [Unit( typeof( Frequency ) )]
     public struct MegaHertz
     {
         // ---------------- Constructor ----------------
