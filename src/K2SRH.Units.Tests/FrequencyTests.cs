@@ -49,21 +49,35 @@ namespace K2SRH.Units.Tests
         }
 
         [TestMethod]
-        public void MultiplyTest()
+        public void MultiplyMeasurementByScalerTest()
         {
             // Setup
             Frequency f1 = new KiloHertz( 1 );
-            Frequency f2 = new KiloHertz( 1 );
 
             // Act
-            Frequency actualFreq = f1 * f2;
+            Frequency actualFreq = f1 * 3;
 
             // Check
-            Assert.AreEqual( new Frequency( 1000000 ), actualFreq );
-            Assert.AreEqual( new Hertz( 1000000 ), actualFreq );
-            Assert.AreEqual( new KiloHertz( 1000 ), actualFreq );
-            Assert.AreEqual( new MegaHertz( 1 ), actualFreq );
-            Assert.AreEqual( new GigaHertz( 0.001m ), actualFreq );
+            Assert.AreEqual( new KiloHertz( 3m ), actualFreq );
+            Assert.AreEqual( new Hertz( 3000m ), actualFreq );
+            Assert.AreEqual( new MegaHertz( 0.003m ), actualFreq );
+            Assert.AreEqual( new GigaHertz( 0.000003m ), actualFreq );
+        }
+
+        [TestMethod]
+        public void MultiplyScalerByMeasurementTest()
+        {
+            // Setup
+            Frequency f1 = new KiloHertz( 1 );
+
+            // Act
+            Frequency actualFreq = 3 * f1;
+
+            // Check
+            Assert.AreEqual( new KiloHertz( 3m ), actualFreq );
+            Assert.AreEqual( new Hertz( 3000m ), actualFreq );
+            Assert.AreEqual( new MegaHertz( 0.003m ), actualFreq );
+            Assert.AreEqual( new GigaHertz( 0.000003m ), actualFreq );
         }
 
         [TestMethod]
@@ -71,19 +85,15 @@ namespace K2SRH.Units.Tests
         {
             // Setup
             Frequency f1 = new GigaHertz( 1 );
-            Frequency f2 = new MegaHertz( 500 );
 
             // Act
-            Frequency actualFreq = f1 / f2;
+            Frequency actualFreq = f1 / 2m;
 
             // Check
-            Assert.AreEqual( new Frequency( 2 ), actualFreq );
-            Assert.AreEqual( new Hertz( 2 ), actualFreq );
-            Assert.AreEqual( new KiloHertz( 0.002m ), actualFreq );
-            Assert.AreEqual( new MegaHertz( 0.000002m ), actualFreq );
-            Assert.AreEqual( new GigaHertz( 0.000000002m ), actualFreq );
-
-            Assert.AreEqual( new Hertz( 2 ), actualFreq );
+            Assert.AreEqual( new GigaHertz( 0.5m ), actualFreq );
+            Assert.AreEqual( new MegaHertz( 500m ), actualFreq );
+            Assert.AreEqual( new KiloHertz( 500000m ), actualFreq );
+            Assert.AreEqual( new Hertz( 500000000m ), actualFreq );
         }
 
         [TestMethod]

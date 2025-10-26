@@ -178,14 +178,28 @@ namespace K2SRH.Units
             return new {type.Name}( left.value - right.value );
         }}
 
-        public static {type.Name} operator *( {type.Name} left, {type.Name} right )
+        /// <summary>
+        /// Multiplies this measurement by a scalar value.
+        /// </summary>
+        public static {type.Name} operator *( {type.Name} {type.Name.ToLower()}, decimal value )
         {{
-            return new {type.Name}( left.value * right.value );
+            return new {type.Name}( {type.Name.ToLower()}.value * value );
         }}
 
-        public static {type.Name} operator /( {type.Name} left, {type.Name} right )
+        /// <summary>
+        /// Multiplies this measurement by a scalar value.
+        /// </summary>
+        public static {type.Name} operator *( decimal value, {type.Name} {type.Name.ToLower()} )
         {{
-            return new {type.Name}( left.value / right.value );
+            return {type.Name.ToLower()} * value;
+        }}
+
+        /// <summary>
+        /// Divides this measurement by a scalar value.
+        /// </summary>
+        public static {type.Name} operator /( {type.Name} {type.Name.ToLower()}, decimal value )
+        {{
+            return new {type.Name}( {type.Name.ToLower()}.value / value );
         }}
     }}
 }}
