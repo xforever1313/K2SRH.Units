@@ -162,7 +162,6 @@ namespace K2SRH.Units.Generator
         {
             return $@"
         // -------- {measurementType.Name} --------
-    
 ";
         }
 
@@ -171,6 +170,23 @@ namespace K2SRH.Units.Generator
             return $@"
     public static partial class {unitType.Name}Extensions
     {{
+        /// <summary>
+        /// Gets the underlying value of this unit as a double.
+        /// </summary>
+        public static double {unitType.Name}AsDouble( this {measurementType.Name} {measurementType.Name.ToLower()} )
+        {{
+            return decimal.ToDouble( {measurementType.Name.ToLower()}.{unitType.Name}() );
+        }}
+
+        /// <summary>
+        /// Gets the underlying value of this unit as an int32. Any fractional digits
+        /// are truncated (no rounding happens).
+        /// </summary>
+        public static int {unitType.Name}AsInt32( this {measurementType.Name} {measurementType.Name.ToLower()} )
+        {{
+            return decimal.ToInt32( {measurementType.Name.ToLower()}.{unitType.Name}() );
+        }}
+
         public static {unitType.Name} To{unitType.Name}( this {measurementType.Name} {measurementType.Name.ToLower()} )
         {{
             return new {unitType.Name}( {measurementType.Name.ToLower()}.{unitType.Name}() );

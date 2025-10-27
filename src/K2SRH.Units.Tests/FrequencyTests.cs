@@ -152,6 +152,50 @@ namespace K2SRH.Units.Tests
         }
 
         [TestMethod]
+        public void ToDoubleTest()
+        {
+            // Setup
+            Frequency ghz = new GigaHertz( 1.5m );
+            Frequency mhz = new MegaHertz( 2.25m );
+            Frequency khz = new KiloHertz( 3.7m );
+            Frequency hz = new Hertz( 0 );
+
+            // Act
+            double actualGhz = ghz.GigaHertzAsDouble();
+            double actualMhz = mhz.MegaHertzAsDouble();
+            double actualKhz = khz.KiloHertzAsDouble();
+            double actualHz = hz.HertzAsDouble();
+
+            // Check
+            Assert.AreEqual( 1.5, actualGhz );
+            Assert.AreEqual( 2.25, actualMhz );
+            Assert.AreEqual( 3.7, actualKhz );
+            Assert.AreEqual( 0, actualHz );
+        }
+
+        [TestMethod]
+        public void ToInt32Test()
+        {
+            // Setup
+            Frequency ghz = new GigaHertz( 1.5m );
+            Frequency mhz = new MegaHertz( 2.25m );
+            Frequency khz = new KiloHertz( 3.7m );
+            Frequency hz = new Hertz( 0 );
+
+            // Act
+            int actualGhz = ghz.GigaHertzAsInt32();
+            int actualMhz = mhz.MegaHertzAsInt32();
+            int actualKhz = khz.KiloHertzAsInt32();
+            int actualHz = hz.HertzAsInt32();
+
+            // Check
+            Assert.AreEqual( 1, actualGhz );
+            Assert.AreEqual( 2, actualMhz );
+            Assert.AreEqual( 3, actualKhz );
+            Assert.AreEqual( 0, actualHz );
+        }
+
+        [TestMethod]
         public void ToStringTest()
         {
             void DoTest( Frequency freq, string expectedString )
