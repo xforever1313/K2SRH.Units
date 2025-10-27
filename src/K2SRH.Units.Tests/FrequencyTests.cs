@@ -5,6 +5,8 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 //
 
+using System.Runtime.InteropServices;
+
 namespace K2SRH.Units.Tests
 {
     [TestClass]
@@ -149,6 +151,44 @@ namespace K2SRH.Units.Tests
             // Check
             Assert.AreEqual( new GigaHertz( 1 ), actualF1 );
             Assert.AreEqual( new GigaHertz( 0.5m ), actualF2 );
+        }
+
+        [TestMethod]
+        public void MinTest()
+        {
+            // Setup
+            Frequency f1 = new GigaHertz( -1 );
+            Frequency f2 = new GigaHertz( 0 );
+            Frequency f3 = new MegaHertz( 1 );
+
+            // Act
+            Frequency minF1AndF2 = Frequency.Min( f1, f2 );
+            Frequency minF2AndF3 = Frequency.Min( f2, f3 );
+            Frequency minF1AndF3 = Frequency.Min( f1, f3 );
+
+            // Check
+            Assert.AreEqual( f1, minF1AndF2 );
+            Assert.AreEqual( f2, minF2AndF3 );
+            Assert.AreEqual( f1, minF1AndF3 );
+        }
+
+        [TestMethod]
+        public void MaxTest()
+        {
+            // Setup
+            Frequency f1 = new GigaHertz( -1 );
+            Frequency f2 = new GigaHertz( 0 );
+            Frequency f3 = new MegaHertz( 1 );
+
+            // Act
+            Frequency maxF1AndF2 = Frequency.Max( f1, f2 );
+            Frequency maxF2AndF3 = Frequency.Max( f2, f3 );
+            Frequency maxF1AndF3 = Frequency.Max( f1, f3 );
+
+            // Check
+            Assert.AreEqual( f2, maxF1AndF2 );
+            Assert.AreEqual( f3, maxF2AndF3 );
+            Assert.AreEqual( f3, maxF1AndF3 );
         }
 
         [TestMethod]

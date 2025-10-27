@@ -111,6 +111,16 @@ namespace K2SRH.Units
             return new {type.Name}( Math.Abs( unit.value ) );
         }}
 
+        public static {type.Name} Min( {type.Name} left, {type.Name} right )
+        {{
+            return new {type.Name}( Math.Min( left.value, right.value ) );
+        }}
+
+        public static {type.Name} Max( {type.Name} left, {type.Name} right )
+        {{
+            return new {type.Name}( Math.Max( left.value, right.value ) );
+        }}
+
         public bool Equals( {type.Name} other )
         {{
             return this.value == other.value;
