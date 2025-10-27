@@ -196,6 +196,32 @@ namespace K2SRH.Units.Tests
         }
 
         [TestMethod]
+        public void IsWholeUnitTest()
+        {
+            // Setup
+            Frequency fractGhz = new GigaHertz( 1.5m );
+            Frequency fractMhz = new MegaHertz( 2.25m );
+            Frequency fractKhz = new KiloHertz( 3.7m );
+            Frequency fractHz = new Hertz( 0.8m );
+
+            Frequency wholeGhz = new GigaHertz( -1 );
+            Frequency wholeMhz = new MegaHertz( 2 );
+            Frequency wholeKhz = new KiloHertz( 3 );
+            Frequency wholeHz = new Hertz( 0 );
+
+            // Act / Check
+            Assert.IsFalse( fractGhz.IsWholeGigaHertz() );
+            Assert.IsFalse( fractMhz.IsWholeMegaHertz() );
+            Assert.IsFalse( fractKhz.IsWholeKiloHertz() );
+            Assert.IsFalse( fractHz.IsWholeHertz() );
+
+            Assert.IsTrue( wholeGhz.IsWholeGigaHertz() );
+            Assert.IsTrue( wholeMhz.IsWholeMegaHertz() );
+            Assert.IsTrue( wholeKhz.IsWholeKiloHertz() );
+            Assert.IsTrue( wholeHz.IsWholeHertz() );
+        }
+
+        [TestMethod]
         public void ToStringTest()
         {
             void DoTest( Frequency freq, string expectedString )

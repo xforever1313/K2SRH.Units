@@ -191,6 +191,20 @@ namespace K2SRH.Units.Generator
         {{
             return new {unitType.Name}( {measurementType.Name.ToLower()}.{unitType.Name}() );
         }}
+
+        /// <summary>
+        /// Checks to see if the given measurement's value is a whole number of this unit type
+        /// (as in, no fractional parts).
+        /// </summary>
+        /// <returns>
+        /// True if there's no fractional component after converting to the unit,
+        /// otherwise false.
+        /// </returns>
+        public static bool IsWhole{unitType.Name}( this {measurementType.Name} {measurementType.Name.ToLower()} )
+        {{
+            decimal value = {measurementType.Name.ToLower()}.{unitType.Name}();
+            return decimal.Truncate( value ) == value;
+        }}
     }}
 ";
         }
