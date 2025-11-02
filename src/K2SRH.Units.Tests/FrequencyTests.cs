@@ -283,5 +283,112 @@ namespace K2SRH.Units.Tests
             DoTest( new MegaHertz( 1000 ), "1.0 GHz" );
             DoTest( new GigaHertz( 2 ), "2.0 GHz" );
         }
+
+        [TestMethod]
+        public void RoundDownToNearestWithDefaultSettingsTest()
+        {
+            Frequency startingHz = new Hertz( 10.01m );
+            Frequency startingKHz = new KiloHertz( 10.1m );
+            Frequency startingMHz = new MegaHertz( 10.3m );
+            Frequency startingGHz = new GigaHertz( 10.2m );
+
+            Assert.AreEqual( new Hertz( 10m ), startingHz.RoundToNearestHertz() );
+            Assert.AreEqual( Frequency.Zero, startingHz.RoundToNearestGigaHertz() );
+            Assert.AreEqual( new KiloHertz( 10m ), startingKHz.RoundToNearestKiloHertz() );
+            Assert.AreEqual( new MegaHertz( 10m ), startingMHz.RoundToNearestMegaHertz() );
+            Assert.AreEqual( new GigaHertz( 10m ), startingGHz.RoundToNearestGigaHertz() );
+        }
+
+        [TestMethod]
+        public void RoundDownToNearestWithDecimalsSpecified()
+        {
+            Frequency startingHz = new Hertz( 10.0104m );
+            Frequency startingKHz = new KiloHertz( 10.0101m );
+            Frequency startingMHz = new MegaHertz( 10.0103m );
+            Frequency startingGHz = new GigaHertz( 10.0102m );
+
+            Assert.AreEqual( new Hertz( 10.01m ), startingHz.RoundToNearestHertz( 2 ) );
+            Assert.AreEqual( Frequency.Zero, startingHz.RoundToNearestGigaHertz( 2 ) );
+            Assert.AreEqual( new KiloHertz( 10.01m ), startingKHz.RoundToNearestKiloHertz( 2 ) );
+            Assert.AreEqual( new MegaHertz( 10.01m ), startingMHz.RoundToNearestMegaHertz( 2 ) );
+            Assert.AreEqual( new GigaHertz( 10.01m ), startingGHz.RoundToNearestGigaHertz( 2 ) );
+        }
+
+        [TestMethod]
+        public void RoundUpToNearestWithDefaultSettingsTest()
+        {
+            Frequency startingHz = new Hertz( 10.51m );
+            Frequency startingKHz = new KiloHertz( 10.61m );
+            Frequency startingMHz = new MegaHertz( 10.73m );
+            Frequency startingGHz = new GigaHertz( 10.82m );
+
+            Assert.AreEqual( new Hertz( 11m ), startingHz.RoundToNearestHertz() );
+            Assert.AreEqual( Frequency.Zero, startingHz.RoundToNearestGigaHertz() );
+            Assert.AreEqual( new KiloHertz( 11m ), startingKHz.RoundToNearestKiloHertz() );
+            Assert.AreEqual( new MegaHertz( 11m ), startingMHz.RoundToNearestMegaHertz() );
+            Assert.AreEqual( new GigaHertz( 11m ), startingGHz.RoundToNearestGigaHertz() );
+        }
+
+        [TestMethod]
+        public void RoundUpToNearestWithDecimalsSpecified()
+        {
+            Frequency startingHz = new Hertz( 10.016m );
+            Frequency startingKHz = new KiloHertz( 10.017m );
+            Frequency startingMHz = new MegaHertz( 10.018m );
+            Frequency startingGHz = new GigaHertz( 10.019m );
+
+            Assert.AreEqual( new Hertz( 10.02m ), startingHz.RoundToNearestHertz( 2 ) );
+            Assert.AreEqual( Frequency.Zero, startingHz.RoundToNearestGigaHertz( 2 ) );
+            Assert.AreEqual( new KiloHertz( 10.02m ), startingKHz.RoundToNearestKiloHertz( 2 ) );
+            Assert.AreEqual( new MegaHertz( 10.02m ), startingMHz.RoundToNearestMegaHertz( 2 ) );
+            Assert.AreEqual( new GigaHertz( 10.02m ), startingGHz.RoundToNearestGigaHertz( 2 ) );
+        }
+
+        [TestMethod]
+        public void MidpointRoundToNearestWithDefaultSettingsTest()
+        {
+            Frequency startingHz = new Hertz( 10.5m );
+            Frequency startingKHz = new KiloHertz( 10.5m );
+            Frequency startingMHz = new MegaHertz( 10.5m );
+            Frequency startingGHz = new GigaHertz( 10.5m );
+
+            // 10 is the even number.  It will round to that.
+            Assert.AreEqual( new Hertz( 10m ), startingHz.RoundToNearestHertz() );
+            Assert.AreEqual( Frequency.Zero, startingHz.RoundToNearestGigaHertz() );
+            Assert.AreEqual( new KiloHertz( 10m ), startingKHz.RoundToNearestKiloHertz() );
+            Assert.AreEqual( new MegaHertz( 10m ), startingMHz.RoundToNearestMegaHertz() );
+            Assert.AreEqual( new GigaHertz( 10m ), startingGHz.RoundToNearestGigaHertz() );
+        }
+
+        [TestMethod]
+        public void MidpointAwayFromZeroRoundToNearestWithDefaultSettingsTest()
+        {
+            Frequency startingHz = new Hertz( 10.5m );
+            Frequency startingKHz = new KiloHertz( 10.5m );
+            Frequency startingMHz = new MegaHertz( -10.5m );
+            Frequency startingGHz = new GigaHertz( 10.5m );
+
+            // 11 is further from zero,It will round to that.
+            Assert.AreEqual( new Hertz( 11m ), startingHz.RoundToNearestHertz( MidpointRounding.AwayFromZero ) );
+            Assert.AreEqual( Frequency.Zero, startingHz.RoundToNearestGigaHertz( MidpointRounding.AwayFromZero ) );
+            Assert.AreEqual( new KiloHertz( 11m ), startingKHz.RoundToNearestKiloHertz( MidpointRounding.AwayFromZero ) );
+            Assert.AreEqual( new MegaHertz( -11m ), startingMHz.RoundToNearestMegaHertz( MidpointRounding.AwayFromZero ) );
+            Assert.AreEqual( new GigaHertz( 11m ), startingGHz.RoundToNearestGigaHertz( MidpointRounding.AwayFromZero ) );
+        }
+
+        [TestMethod]
+        public void MidpointAwayFromZeroRoundUpToNearestWithDecimalsSpecified()
+        {
+            Frequency startingHz = new Hertz( 10.015m );
+            Frequency startingKHz = new KiloHertz( 10.015m );
+            Frequency startingMHz = new MegaHertz( -10.015m );
+            Frequency startingGHz = new GigaHertz( 10.015m );
+
+            Assert.AreEqual( new Hertz( 10.02m ), startingHz.RoundToNearestHertz( 2, MidpointRounding.AwayFromZero ) );
+            Assert.AreEqual( Frequency.Zero, startingHz.RoundToNearestGigaHertz( 2, MidpointRounding.AwayFromZero ) );
+            Assert.AreEqual( new KiloHertz( 10.02m ), startingKHz.RoundToNearestKiloHertz( 2, MidpointRounding.AwayFromZero ) );
+            Assert.AreEqual( new MegaHertz( -10.02m ), startingMHz.RoundToNearestMegaHertz( 2, MidpointRounding.AwayFromZero ) );
+            Assert.AreEqual( new GigaHertz( 10.02m ), startingGHz.RoundToNearestGigaHertz( 2, MidpointRounding.AwayFromZero ) );
+        }
     }
 }

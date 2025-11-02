@@ -205,6 +205,71 @@ namespace K2SRH.Units.Generator
             decimal value = {measurementType.Name.ToLower()}.{unitType.Name}();
             return decimal.Truncate( value ) == value;
         }}
+
+        /// <summary>
+        /// Rounds the given <see cref=""{measurementType.Name}""/> to the nearest <see cref=""{unitType.Name}""/>.
+        /// </summary>
+        /// <returns>
+        /// The nearest whole <see cref=""{unitType.Name}""/>.  If the fractional component of the unit
+        /// is halfway between two whole units, one of which is even and ht other odd, the event number
+        /// is returned.
+        /// </returns>
+        public static {unitType.Name} RoundToNearest{unitType.Name}( this {measurementType.Name} {measurementType.Name.ToLower()} )
+        {{
+            decimal roundedValue = Math.Round( {measurementType.Name.ToLower()}.{unitType.Name}() );
+            return new {unitType.Name}( roundedValue );
+        }}
+
+        /// <summary>
+        /// Rounds the given <see cref=""{measurementType.Name}""/> to the nearest <see cref=""{unitType.Name}""/>.
+        /// </summary>
+        /// <param name=""decimals"">
+        /// The number of decimal places in the return value.
+        /// </param>
+        /// <returns>
+        /// The nearest whole <see cref=""{unitType.Name}""/>.  If the fractional component of the unit
+        /// is halfway between two whole units, one of which is even and ht other odd, the event number
+        /// is returned.  If the unit has fewer fractional digits than decimals, it is returned unchanged.
+        /// </returns>
+        public static {unitType.Name} RoundToNearest{unitType.Name}( this {measurementType.Name} {measurementType.Name.ToLower()}, int decimals )
+        {{
+            decimal roundedValue = Math.Round( {measurementType.Name.ToLower()}.{unitType.Name}(), decimals );
+            return new {unitType.Name}( roundedValue );
+        }}
+
+        /// <summary>
+        /// Rounds the given <see cref=""{measurementType.Name}""/> to the nearest <see cref=""{unitType.Name}""/>.
+        /// </summary>
+        /// <param name=""mode"">
+        /// Specification for how to round the unit if it is midway between two other numbers.
+        /// </param>
+        /// <returns>
+        /// The nearest whole <see cref=""{unitType.Name}""/>.
+        /// </returns>
+        public static {unitType.Name} RoundToNearest{unitType.Name}( this {measurementType.Name} {measurementType.Name.ToLower()}, MidpointRounding mode )
+        {{
+            decimal roundedValue = Math.Round( {measurementType.Name.ToLower()}.{unitType.Name}(), mode );
+            return new {unitType.Name}( roundedValue );
+        }}
+
+        /// <summary>
+        /// Rounds the given <see cref=""{measurementType.Name}""/> to the nearest <see cref=""{unitType.Name}""/>.
+        /// </summary>
+        /// <param name=""decimals"">
+        /// The number of decimal places in the return value.
+        /// </param>
+        /// <param name=""mode"">
+        /// Specification for how to round the unit if it is midway between two other numbers.
+        /// </param>
+        /// <returns>
+        /// The nearest whole <see cref=""{unitType.Name}""/>.
+        /// If the unit has fewer fractional digits than decimals, it is returned unchanged.
+        /// </returns>
+        public static {unitType.Name} RoundToNearest{unitType.Name}( this {measurementType.Name} {measurementType.Name.ToLower()}, int decimals, MidpointRounding mode )
+        {{
+            decimal roundedValue = Math.Round( {measurementType.Name.ToLower()}.{unitType.Name}(), decimals, mode );
+            return new {unitType.Name}( roundedValue );
+        }}
     }}
 ";
         }
