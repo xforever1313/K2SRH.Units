@@ -13,19 +13,29 @@ namespace K2SRH.Units.Tests
         // ---------------- Tests ----------------
 
         [TestMethod]
-        public void ConversionTests()
+        public void ConversionToMetersTests()
         {
             Distance um = new Micrometers( 1 );
             Distance mm = new Millimeters( 1 );
             Distance cm = new Centimeters( 1 );
+            Distance inch = new Inches( 1 );
             Distance meters = new Meters( 1 );
             Distance km = new Kilometers( 1 );
 
             Assert.AreEqual( new Meters( 0.000001m ), um );
             Assert.AreEqual( new Meters( 0.001m ), mm );
             Assert.AreEqual( new Meters( 0.01m ), cm );
+            Assert.AreEqual( new Meters( 0.0254m ), inch );
             Assert.AreEqual( new Meters( 1 ), meters );
             Assert.AreEqual( new Meters( 1000m ),km );
+        }
+
+        [TestMethod]
+        public void ConversionToInchesTests()
+        {
+            Distance meter = new Meters( 1 );
+
+            Assert.AreEqual( new Inches( 39.37007874015748031496062992126m ), meter );
         }
 
         [TestMethod]
