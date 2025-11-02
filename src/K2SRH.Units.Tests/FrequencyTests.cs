@@ -5,8 +5,6 @@
 //          http://www.boost.org/LICENSE_1_0.txt)
 //
 
-using System.Runtime.InteropServices;
-
 namespace K2SRH.Units.Tests
 {
     [TestClass]
