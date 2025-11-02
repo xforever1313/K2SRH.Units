@@ -27,5 +27,31 @@ namespace K2SRH.Units.Tests
             Assert.AreEqual( new Meters( 1 ), meters );
             Assert.AreEqual( new Meters( 1000m ),km );
         }
+
+        [TestMethod]
+        public void ToStringTest()
+        {
+            void DoTest( Distance distance, string expectedString )
+            {
+                Assert.AreEqual( expectedString, distance.ToString() );
+            }
+
+            DoTest( new Micrometers( 1 ), "1 μm" );
+            DoTest( new Micrometers( 1000 ), "1 mm" );
+
+            DoTest( new Millimeters( 1 ), "1 mm" );
+            DoTest( new Millimeters( 1000 ), "1 m" );
+
+            DoTest( new Centimeters( 1 ), "1 cm" );
+            DoTest( new Centimeters( 99.99m ), "99.99 cm" );
+            DoTest( new Centimeters( 100 ), "1 m" );
+
+            DoTest( new Meters( 1 ), "1 m" );
+            DoTest( new Meters( 100 ), "100 m" );
+            DoTest( new Meters( 999.999m ), "999.999 m" );
+
+            DoTest( new Meters( 1000 ), "1 km" );
+            DoTest( new Kilometers( 1 ), "1 km" );
+        }
     }
 }

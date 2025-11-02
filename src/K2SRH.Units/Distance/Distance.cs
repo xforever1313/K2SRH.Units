@@ -25,7 +25,26 @@ namespace K2SRH.Units
 
         public override string ToString()
         {
-            return base.ToString();
+            if( this < new Millimeters( 1 ) )
+            {
+                return this.ToMicrometers().ToString();
+            }
+            else if( this < new Centimeters( 1 ) )
+            {
+                return this.ToMillimeters().ToString();
+            }
+            else if( this < new Meters( 1 ) )
+            {
+                return this.ToCentimeters().ToString();
+            }
+            else if( this < new Kilometers( 1 ) )
+            {
+                return this.ToMeters().ToString();
+            }
+            else
+            {
+                return this.ToKilometers().ToString();
+            }
         }
     }
 }

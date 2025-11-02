@@ -14,14 +14,14 @@ namespace K2SRH.Units
 
         public static implicit operator Distance( Micrometers mm )
         {
-            return new Distance( mm.Value / ( 1000.0m * 1000.0m ) );
+            return new Distance( mm.Value / 1000000m );
         }
 
         // ---------------- Methods ----------------
 
         public override string ToString()
         {
-            return $"{this.Value} μm";
+            return $"{this.Value.ToStringRemoveNonSignificantDigits()} μm";
         }
     }
 
@@ -29,7 +29,7 @@ namespace K2SRH.Units
     {
         public static decimal Micrometers( this Distance distance )
         {
-            return distance.Meters * ( 1000.0m * 1000.0m );
+            return distance.Meters * 1000000m;
         }
     }
 }

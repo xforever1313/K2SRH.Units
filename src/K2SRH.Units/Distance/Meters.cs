@@ -21,7 +21,7 @@ namespace K2SRH.Units
 
         public override string ToString()
         {
-            return $"{this.Value} m";
+            return $"{this.Value.ToStringRemoveNonSignificantDigits()} m";
         }
     }
 
