@@ -167,29 +167,35 @@ namespace K2SRH.Units.Generator
 
         private static string GenerateExtensionMethods( INamedTypeSymbol unitType, ITypeSymbol measurementType )
         {
+            // Crappy hack for TimeSpans, which are backed by doubles.
+            bool isTimeSpan = measurementType.Name == nameof( TimeSpan );
+            string timeSpanPrefix = isTimeSpan ? "Total" : "";
+
+            string getValueSignature = $"{unitType.Name}Extensions.{unitType.Name}( {measurementType.Name.ToLower()} )";
+
             return $@"
     public static partial class {unitType.Name}Extensions
     {{
         /// <summary>
         /// Gets the underlying value of this unit as a double.
         /// </summary>
-        public static double {unitType.Name}AsDouble( this {measurementType.Name} {measurementType.Name.ToLower()} )
+        public static double {timeSpanPrefix}{unitType.Name}AsDouble( this {measurementType.Name} {measurementType.Name.ToLower()} )
         {{
-            return decimal.ToDouble( {measurementType.Name.ToLower()}.{unitType.Name}() );
+            return decimal.ToDouble( {getValueSignature} );
         }}
 
         /// <summary>
         /// Gets the underlying value of this unit as an int32. Any fractional digits
         /// are truncated (no rounding happens).
         /// </summary>
-        public static int {unitType.Name}AsInt32( this {measurementType.Name} {measurementType.Name.ToLower()} )
+        public static int {timeSpanPrefix}{unitType.Name}AsInt32( this {measurementType.Name} {measurementType.Name.ToLower()} )
         {{
-            return decimal.ToInt32( {measurementType.Name.ToLower()}.{unitType.Name}() );
+            return decimal.ToInt32( {getValueSignature} );
         }}
 
-        public static {unitType.Name} To{unitType.Name}( this {measurementType.Name} {measurementType.Name.ToLower()} )
+        public static {unitType.Name} To{timeSpanPrefix}{unitType.Name}( this {measurementType.Name} {measurementType.Name.ToLower()} )
         {{
-            return new {unitType.Name}( {measurementType.Name.ToLower()}.{unitType.Name}() );
+            return new {unitType.Name}( {getValueSignature} );
         }}
 
         /// <summary>
@@ -202,7 +208,7 @@ namespace K2SRH.Units.Generator
         /// </returns>
         public static bool IsWhole{unitType.Name}( this {measurementType.Name} {measurementType.Name.ToLower()} )
         {{
-            decimal value = {measurementType.Name.ToLower()}.{unitType.Name}();
+            decimal value = {getValueSignature};
             return decimal.Truncate( value ) == value;
         }}
 
@@ -216,7 +222,7 @@ namespace K2SRH.Units.Generator
         /// </returns>
         public static {unitType.Name} RoundToNearest{unitType.Name}( this {measurementType.Name} {measurementType.Name.ToLower()} )
         {{
-            decimal roundedValue = Math.Round( {measurementType.Name.ToLower()}.{unitType.Name}() );
+            decimal roundedValue = Math.Round( {getValueSignature} );
             return new {unitType.Name}( roundedValue );
         }}
 
@@ -233,7 +239,7 @@ namespace K2SRH.Units.Generator
         /// </returns>
         public static {unitType.Name} RoundToNearest{unitType.Name}( this {measurementType.Name} {measurementType.Name.ToLower()}, int decimals )
         {{
-            decimal roundedValue = Math.Round( {measurementType.Name.ToLower()}.{unitType.Name}(), decimals );
+            decimal roundedValue = Math.Round( {getValueSignature}, decimals );
             return new {unitType.Name}( roundedValue );
         }}
 
@@ -248,7 +254,7 @@ namespace K2SRH.Units.Generator
         /// </returns>
         public static {unitType.Name} RoundToNearest{unitType.Name}( this {measurementType.Name} {measurementType.Name.ToLower()}, MidpointRounding mode )
         {{
-            decimal roundedValue = Math.Round( {measurementType.Name.ToLower()}.{unitType.Name}(), mode );
+            decimal roundedValue = Math.Round( {getValueSignature}, mode );
             return new {unitType.Name}( roundedValue );
         }}
 
@@ -267,7 +273,7 @@ namespace K2SRH.Units.Generator
         /// </returns>
         public static {unitType.Name} RoundToNearest{unitType.Name}( this {measurementType.Name} {measurementType.Name.ToLower()}, int decimals, MidpointRounding mode )
         {{
-            decimal roundedValue = Math.Round( {measurementType.Name.ToLower()}.{unitType.Name}(), decimals, mode );
+            decimal roundedValue = Math.Round( {getValueSignature}, decimals, mode );
             return new {unitType.Name}( roundedValue );
         }}
     }}
